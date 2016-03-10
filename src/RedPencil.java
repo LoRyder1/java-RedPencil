@@ -39,4 +39,8 @@ public class RedPencil {
     public boolean isPriceIncreased(int price, int newPrice) {
         return newPrice > price;
     }
+
+    public void reducePrice(float amount) {
+        promoPrice -= amount;
+    }
 }
