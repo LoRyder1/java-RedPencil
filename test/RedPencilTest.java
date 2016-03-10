@@ -14,21 +14,31 @@ public class RedPencilTest {
 
     @Test
     public void promoPriceBetween5and30Percent() {
-        assertEquals(true, promo.between5and30Percent(100, 90));
+        assertEquals(true, promo.isBetween5and30Percent(100, 90));
     }
 
     @Test
     public void promoIsInvalidIfNotBetween5And30Percent() {
-        assertEquals(false, promo.between5and30Percent(100, 96));
+        assertEquals(false, promo.isBetween5and30Percent(100, 96));
     }
 
     @Test
-    public void previousPriceMustBeStableForAtLeast30Days() {
-        assertEquals(false, promo.priceStable(24));
+    public void priceStablityLessThan30ReturnsFalse() {
+        assertEquals(false, promo.isPriceStable(24));
     }
 
     @Test
-    public void promoLengthMax30days() {
-        assertEquals(false, promo.promoLengthUnderMax(32));
+    public void priceStabilityGreaterThan30ReturnsTrue() {
+        assertEquals(true, promo.isPriceStable(31));
+    }
+
+    @Test
+    public void invalidPromoLengthReturnsFalse() {
+        assertEquals(false, promo.isPromoLengthUnderMax(32));
+    }
+
+    @Test
+    public void validPromoLengthUnder30ReturnsTrue() {
+        assertEquals(true, promo.isPromoLengthUnderMax(24));
     }
 }

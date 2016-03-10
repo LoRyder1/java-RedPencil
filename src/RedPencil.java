@@ -16,7 +16,7 @@ public class RedPencil {
         this.length = length;
     }
 
-    public boolean between5and30Percent(float price, float promoPrice) {
+    public boolean isBetween5and30Percent(float price, float promoPrice) {
         float priceDiff = (price - promoPrice);
         float percentDiff = (priceDiff / price) *100;
 
@@ -27,11 +27,11 @@ public class RedPencil {
         }
     }
 
-    public boolean priceStable(int stability) {
+    public boolean isPriceStable(int stability) {
         return stability >= 30;
     }
 
-    public boolean promoLengthUnderMax(int days) {
+    public boolean isPromoLengthUnderMax(int days) {
         return days <= 30;
     }
 }
