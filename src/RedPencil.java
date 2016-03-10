@@ -4,28 +4,30 @@ public class RedPencil {
     private float price;
     private float promoPrice;
     private int stability;
+    private int length;
 
-    public RedPencil(float price, float promoPrice, int stability) {
+    public RedPencil() {
+    }
+
+    public RedPencil(float price, float promoPrice, int stability, int length) {
         this.price = price;
         this.promoPrice = promoPrice;
         this.stability = stability;
+        this.length = length;
     }
 
-    public boolean valid() {
-        float priceDiff = price - promoPrice;
-        float percentDiff = ((priceDiff / price) * 100);
-        if (percentDiff < 30 && percentDiff > 5 && stability >= 30) {
+    public boolean between5and30Percent(float price, float promoPrice) {
+        float priceDiff = (price - promoPrice);
+        float percentDiff = (priceDiff / price) *100;
+
+        if (percentDiff >= 5 && percentDiff <= 30) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean stable(int days) {
-        if (days >= 30) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean priceStable(int stability) {
+        return stability >= 30;
     }
 }

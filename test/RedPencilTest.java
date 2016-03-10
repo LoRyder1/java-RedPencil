@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -6,25 +7,23 @@ public class RedPencilTest {
 
     private RedPencil promo;
 
-    public void setPromo(int price, int promoPrice, int stability) {
-        promo = new RedPencil(price, promoPrice, stability);
+    @Before
+    public void setUp() {
+        promo = new RedPencil();
     }
 
     @Test
     public void promoPriceBetween5and30Percent() {
-        setPromo(100, 90, 30);
-        assertEquals(true, promo.valid());
+        assertEquals(true, promo.between5and30Percent(100, 90));
     }
 
     @Test
     public void promoIsInvalidIfNotBetween5And30Percent() {
-        setPromo(100, 96, 30);
-        assertEquals(false, promo.valid());
+        assertEquals(false, promo.between5and30Percent(100, 96));
     }
 
     @Test
     public void previousPriceMustBeStableForAtLeast30Days() {
-        setPromo(100, 90, 29);
-        assertEquals(false, promo.valid());
+        assertEquals(false, promo.priceStable(24));
     }
 }
