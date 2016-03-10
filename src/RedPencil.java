@@ -5,6 +5,7 @@ public class RedPencil {
     private float promoPrice;
     private int stability;
     private int length;
+    private float newPrice = promoPrice;
 
     public RedPencil() {
     }
@@ -35,12 +36,20 @@ public class RedPencil {
         return days <= 30;
     }
 
-
-    public boolean isPriceIncreased(int price, int newPrice) {
+    public boolean isPriceIncreased(float price, float newPrice) {
         return newPrice > price;
+    }
+
+    public void increasePrice(float amount) {
+        newPrice += amount;
     }
 
     public void reducePrice(float amount) {
         promoPrice -= amount;
+    }
+
+    public boolean isPromoValid() {
+        System.out.println("hey");
+        return isBetween5and30Percent(price, promoPrice) && isPriceStable(stability) && isPromoLengthUnderMax(length) && !isPriceIncreased(price, newPrice);
     }
 }

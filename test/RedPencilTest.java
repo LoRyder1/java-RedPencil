@@ -51,4 +51,16 @@ public class RedPencilTest {
     public void whenPriceIsNotIncreasedReturnsFalse() {
         assertEquals(false, promo.isPriceIncreased(50, 50));
     }
+
+    @Test
+    public void invalidPromo() {
+        promo = new RedPencil(100, 90, 30, 31);
+        assertEquals(false, promo.isPromoValid());
+    }
+
+    @Test
+    public void validPromo() {
+        promo = new RedPencil(100, 75, 30, 30);
+        assertEquals(true, promo.isPromoValid());
+    }
 }
