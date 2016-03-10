@@ -34,4 +34,9 @@ public class RedPencil {
     public boolean isPromoLengthUnderMax(int days) {
         return days <= 30;
     }
+
+
+    public boolean isPriceIncreased(int price, int newPrice) {
+        return newPrice > price;
+    }
 }

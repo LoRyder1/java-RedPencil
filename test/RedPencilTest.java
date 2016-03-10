@@ -41,4 +41,14 @@ public class RedPencilTest {
     public void validPromoLengthUnder30ReturnsTrue() {
         assertEquals(true, promo.isPromoLengthUnderMax(24));
     }
+
+    @Test
+    public void whenPriceIsIncreasedReturnsTrue() {
+        assertEquals(true, promo.isPriceIncreased(50, 60));
+    }
+
+    @Test
+    public void whenPriceIsNotIncreasedReturnsFalse() {
+        assertEquals(false, promo.isPriceIncreased(50, 50));
+    }
 }
