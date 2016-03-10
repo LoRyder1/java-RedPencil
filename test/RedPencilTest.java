@@ -26,4 +26,9 @@ public class RedPencilTest {
     public void previousPriceMustBeStableForAtLeast30Days() {
         assertEquals(false, promo.priceStable(24));
     }
+
+    @Test
+    public void promoLengthMax30days() {
+        assertEquals(false, promo.promoLengthUnderMax(32));
+    }
 }

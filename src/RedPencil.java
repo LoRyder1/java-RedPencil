@@ -30,4 +30,8 @@ public class RedPencil {
     public boolean priceStable(int stability) {
         return stability >= 30;
     }
+
+    public boolean promoLengthUnderMax(int days) {
+        return days <= 30;
+    }
 }
