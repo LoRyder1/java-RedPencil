@@ -1,19 +1,20 @@
 
 public class RedPencil {
 
+    private double percentDiff;
+
     public boolean isPromoValid(Product prod) {
         return isBetween5and30Percent(prod.price, prod.promoPrice) && isPriceStable(prod.stability) && isPromoLengthUnderMax(prod.length) && !isPriceIncreased(prod.newPrice, prod.promoPrice);
     }
 
     public boolean isBetween5and30Percent(double price, double promoPrice) {
-        double priceDiff = (price - promoPrice);
-        double percentDiff = (priceDiff / price) * 100;
+        calcPercentDiff(price, promoPrice);
+        return percentDiff >= 5 && percentDiff <= 30;
+    }
 
-        if (percentDiff >= 5 && percentDiff <= 30) {
-            return true;
-        } else {
-            return false;
-        }
+    private void calcPercentDiff(double price, double promoPrice) {
+        double priceDiff = (price - promoPrice);
+        percentDiff = (priceDiff / price) * 100;
     }
 
     public boolean isPriceStable(int stability) {

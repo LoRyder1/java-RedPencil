@@ -5,13 +5,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class RedPencilTest {
 
-    private RedPencil promo;
+    private RedPencil promo = new RedPencil();
     private Product prod;
-
-    @Before
-    public void setUp() {
-        promo = new RedPencil();
-    }
 
     @Test
     public void promoPriceBetween5and30Percent() {
@@ -53,35 +48,39 @@ public class RedPencilTest {
         assertEquals(false, promo.isPriceIncreased(50, 50));
     }
 
+    public void createProd(double price, double promoPrice, int stability, int length) {
+        prod = new Product(price, promoPrice, stability, length);
+    }
+
     @Test
     public void invalidPromo() {
-        prod = new Product(100, 90, 30, 31);
+        createProd(100, 90, 30, 31);
         assertEquals(false, promo.isPromoValid(prod));
     }
 
     @Test
     public void validPromo() {
-        prod = new Product(100, 75, 30, 30);
+        createProd(100, 75, 30, 30);
         assertEquals(true, promo.isPromoValid(prod));
     }
 
     @Test
     public void increasingPriceInvalidatesPromo() {
-        prod = new Product(100, 75, 30, 30);
+        createProd(100, 75, 30, 30);
         prod.increasePrice(10);
         assertEquals(false, promo.isPromoValid(prod));
     }
 
     @Test
     public void reducingPricePastMaxInvalidatesPromo() {
-        prod = new Product(100, 75, 30, 30);
+        createProd(100, 75, 30, 30);
         prod.reducePrice(10);
         assertEquals(false, promo.isPromoValid(prod));
     }
 
     @Test
     public void reducingPriceNotPastMaxReturnsTruePromo() {
-        prod = new Product(100, 75, 30, 30);
+        createProd(100, 75, 30, 30);
         prod.reducePrice(5);
         assertEquals(true, promo.isPromoValid(prod));
     }
